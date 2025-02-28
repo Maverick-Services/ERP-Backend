@@ -44,7 +44,7 @@ app.use('/api/requirements', requirementRoutes);
 
 // Root Route
 app.get('/', (req, res) => {
-    res.json("API is running");
+    res.json("API is running...");
 });
 
 // Listen to Port
