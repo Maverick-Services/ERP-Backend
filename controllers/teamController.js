@@ -1,6 +1,6 @@
 const Team = require('../models/Team-model');
 const nodemailer = require("nodemailer");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const generatePassword = () => {
     return Math.random().toString(36).slice(-8); // Generates an 8-character password
