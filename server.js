@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
-
+const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const teamRoutes = require('./routes/teamRoutes');
 const taskRoutes = require('./routes/taskRoutes');
@@ -16,6 +16,20 @@ const PORT = process.env.PORT || 8800;
 // Connect to Database
 connectDB();
 
+app.use(cors());
+
+
+const allowedOrigins = ["http://localhost:3000", "https://yourfrontenddomain.com"];
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+}));
 // Middleware
 app.use(express.json()); // To parse JSON requests
 
